@@ -11,14 +11,14 @@ dotenv.config();
 
 const app = express();
 
-app.use('/api', apiRoutes);
-app.use('/api/posts', postRoutes);
-
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(
 	bodyParser.urlencoded({ limit: '30mb', extended: true })
 );
 app.use(cors({ origin: '*' }));
+
+app.use('/api', apiRoutes);
+app.use('/api/posts', postRoutes);
 
 const PORT = process.env.PORT || 5000;
 
