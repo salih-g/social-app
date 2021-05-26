@@ -1,9 +1,6 @@
 # Social app
 
-My plan is basic fully functioning social mobile and web application
-
-## Description
-It's a basic full-stack social app for learning purposes
+It's a basic fully functioning social mobile and web application
 
 ## Technologies
   ### Front-End:
