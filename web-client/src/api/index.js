@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//TODO: Make env this
 const url = 'http://localhost:5000/api/posts';
 
 export const fetchPosts = () => axios.get(url);
