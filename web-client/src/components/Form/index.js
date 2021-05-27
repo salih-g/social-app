@@ -9,18 +9,13 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useStyles from './styles';
-import {
-	createPost,
-	updatePost,
-} from '../../actions/posts';
+import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
 	const classes = useStyles();
 
 	const post = useSelector((state) =>
-		currentId
-			? state.posts.find((p) => p._id === currentId)
-			: null
+		currentId ? state.posts.find((p) => p._id === currentId) : null
 	);
 	const [postData, setPostData] = useState({
 		creator: '',
@@ -113,7 +108,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					onChange={(e) =>
 						setPostData({
 							...postData,
-							tags: e.target.value,
+							tags: e.target.value.split(','),
 						})
 					}
 				/>
