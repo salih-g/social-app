@@ -26,6 +26,7 @@ mongoose
 	.connect(process.env.MONGO_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
+		useFindAndModify: false,
 	})
 	.then(() =>
 		app.listen(PORT, () => {
@@ -34,5 +35,3 @@ mongoose
 		})
 	)
 	.catch((err) => console.err(err.message));
-
-mongoose.set('useFindAndModify', false);
