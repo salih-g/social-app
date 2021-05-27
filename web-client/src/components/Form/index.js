@@ -28,8 +28,14 @@ const Form = () => {
 		console.log('girdim');
 
 		dispatch(createPost(postData));
+		setPostData({
+			creator: '',
+			title: '',
+			message: '',
+			tags: '',
+			selectedFile: '',
+		});
 	};
-	const clear = () => {};
 
 	return (
 		<>
@@ -114,15 +120,6 @@ const Form = () => {
 						fullWidth
 					>
 						Submit
-					</Button>
-					<Button
-						variant='contained'
-						color='secondary'
-						size='small'
-						onClick={clear}
-						fullWidth
-					>
-						Clear
 					</Button>
 				</form>
 			</Paper>
