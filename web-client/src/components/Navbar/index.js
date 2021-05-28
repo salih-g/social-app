@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import {
 	AppBar,
 	Avatar,
@@ -13,7 +15,29 @@ import useStyles from './styles';
 const Navbar = () => {
 	const classes = useStyles();
 
-	const user = null;
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const location = useLocation();
+
+	const [user, setUser] = useState(
+		JSON.parse(localStorage.getItem('profile'))
+	);
+
+	useEffect(() => {
+		//const token = user?.token;
+
+		//JWT check
+
+		setUser(JSON.parse(localStorage.getItem('profile')));
+	}, [location]);
+
+	const logout = () => {
+		dispatch({ type: 'LOGOUT' });
+
+		history.push('/');
+
+		setUser(null);
+	};
 
 	return (
 		<AppBar
@@ -49,6 +73,7 @@ const Navbar = () => {
 							variant='contained'
 							className={classes.logout}
 							color='secondary'
+							onClick={logout}
 						>
 							Logout
 						</Button>

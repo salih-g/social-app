@@ -6,8 +6,7 @@ import {
 	UPDATE,
 } from '../constants/actionTypes';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (posts = [], action) => {
+const postReducers = (posts = [], action) => {
 	switch (action.type) {
 		case FETCH_ALL:
 			return action.payload;
@@ -27,3 +26,5 @@ export default (posts = [], action) => {
 			return posts;
 	}
 };
+
+export default postReducers;
