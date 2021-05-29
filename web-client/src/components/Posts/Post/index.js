@@ -33,7 +33,7 @@ const Post = ({ post, setCurrentId }) => {
 				title={post.title}
 			/>
 			<div className={classes.overlay}>
-				<Typography variant='h6'>{post.creator}</Typography>
+				<Typography variant='h6'>{post.name}</Typography>
 				<Typography variant='body2'>
 					{moment(post.createdAt).fromNow()}
 				</Typography>
@@ -48,11 +48,7 @@ const Post = ({ post, setCurrentId }) => {
 				</Button>
 			</div>
 			<div className={classes.details}>
-				<Typography
-					variant='body2'
-					color='textSecondary'
-					component='h2'
-				>
+				<Typography variant='body2' color='textSecondary' component='h2'>
 					{post.tags.map((tag) => `#${tag} `)}
 				</Typography>
 			</div>
@@ -65,11 +61,7 @@ const Post = ({ post, setCurrentId }) => {
 				{post.title}
 			</Typography>
 			<CardContent>
-				<Typography
-					variant='body2'
-					color='textSecondary'
-					component='p'
-				>
+				<Typography variant='body2' color='textSecondary' component='p'>
 					{post.message}
 				</Typography>
 			</CardContent>
