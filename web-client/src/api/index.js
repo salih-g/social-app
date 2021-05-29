@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
 API.interceptors.request.use((req) => {
 	if (localStorage.getItem('profile')) {
 		req.headers.Authorization = `Bearer ${
@@ -11,7 +11,6 @@ API.interceptors.request.use((req) => {
 	return req;
 });
 
-//TODO: Make env this
 export const fetchPosts = () => API.get('/posts');
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatedPost) =>

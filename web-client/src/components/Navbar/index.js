@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
 
-import {
-	AppBar,
-	Avatar,
-	Button,
-	Typography,
-	Toolbar,
-} from '@material-ui/core';
+import { AppBar, Avatar, Button, Typography, Toolbar } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -19,16 +14,19 @@ const Navbar = () => {
 	const history = useHistory();
 	const location = useLocation();
 
-	const [user, setUser] = useState(
-		JSON.parse(localStorage.getItem('profile'))
-	);
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
 	useEffect(() => {
-		//const token = user?.token;
+		const token = user?.token;
 
-		//JWT check
+		if (token) {
+			const decodedToken = decode(token);
+
+			if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+		}
 
 		setUser(JSON.parse(localStorage.getItem('profile')));
+		// eslint-disable-next-line
 	}, [location]);
 
 	const logout = () => {
@@ -40,11 +38,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<AppBar
-			className={classes.appBar}
-			position='static'
-			color='inherit'
-		>
+		<AppBar className={classes.appBar} position='static' color='inherit'>
 			<div className={classes.brandContainer}>
 				<Typography
 					component={Link}
