@@ -11,3 +11,7 @@ It's a basic fully functioning social mobile and web application
   - Mongo DB
   - Mongoose
   
+  
+  ## TODOS:
+    - Get cookie permission
+    
