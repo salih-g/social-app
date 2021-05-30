@@ -6,4 +6,9 @@ export default makeStyles((theme) => ({
 			flexDirection: 'column-reverse',
 		},
 	},
+	pagination: {
+		borderRadius: 4,
+		marginTop: '1rem',
+		padding: '16px',
+	},
 }));
