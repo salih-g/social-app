@@ -43,7 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		setPostData({
 			title: '',
 			message: '',
-			tags: '',
+			tags: [],
 			selectedFile: '',
 		});
 		setCurrentId(null);
