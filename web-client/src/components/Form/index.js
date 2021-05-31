@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import ChipInput from 'material-ui-chip-input';
+
 import useStyles from './styles';
+
 import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
@@ -56,6 +59,17 @@ const Form = ({ currentId, setCurrentId }) => {
 		);
 	}
 
+	const handleAddChip = (tag) => {
+		setPostData({ ...postData, tags: [...postData.tags, tag] });
+	};
+
+	const handleDeleteChip = (chipToDelete) => {
+		setPostData({
+			...postData,
+			tags: postData.tags.filter((tag) => tag !== chipToDelete),
+		});
+	};
+
 	return (
 		<Paper className={classes.paper}>
 			<form
@@ -93,18 +107,14 @@ const Form = ({ currentId, setCurrentId }) => {
 						})
 					}
 				/>
-				<TextField
+				<ChipInput
 					name='tags'
 					variant='outlined'
-					label='Tags (coma separated)'
+					label='Tags'
 					fullWidth
 					value={postData.tags}
-					onChange={(e) =>
-						setPostData({
-							...postData,
-							tags: e.target.value.split(','),
-						})
-					}
+					onAdd={(chip) => handleAddChip(chip)}
+					onDelete={(chip) => handleDeleteChip(chip)}
 				/>
 				<div className={classes.fileInput}>
 					<FileBase
