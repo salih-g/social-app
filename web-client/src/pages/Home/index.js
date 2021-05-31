@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+
 import {
 	Container,
 	Grow,
@@ -8,21 +11,22 @@ import {
 	Button,
 	Paper,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
 import { getPostsBySearch } from '../../actions/posts';
 import Posts from '../../components/Posts';
 import Form from '../../components/Form';
 import Pagination from '../../components/Pagination';
+
 import useStyles from './styles';
 
 function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
+
 const Home = () => {
 	const classes = useStyles();
+
 	const query = useQuery();
 	const page = query.get('page') || 1;
 	const searchQuery = query.get('searchQuery');

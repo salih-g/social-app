@@ -1,19 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import decode from 'jwt-decode';
 
+import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+
 import * as actionType from '../../constants/actionTypes';
+
 import useStyles from './styles';
 
 const Navbar = () => {
+	const classes = useStyles();
+
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const history = useHistory();
-	const classes = useStyles();
 
 	const logout = () => {
 		dispatch({ type: actionType.LOGOUT });

@@ -1,24 +1,28 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+
+import moment from 'moment';
+
 import {
 	Paper,
 	Typography,
 	CircularProgress,
 	Divider,
 } from '@material-ui/core/';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-import { useParams, useHistory } from 'react-router-dom';
 
 import { getPost, getPostsBySearch } from '../../actions/posts';
+
 import useStyles from './styles';
 
 const Post = () => {
+	const classes = useStyles();
+
 	const { post, posts, isLoading } = useSelector((state) => state.posts);
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const classes = useStyles();
 	const { id } = useParams();
 
 	useEffect(() => {

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
+import { Container } from '@material-ui/core';
 
 import PostDetails from './pages/PostDetails';
 import Navbar from './components/Navbar';
